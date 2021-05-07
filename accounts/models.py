@@ -7,7 +7,8 @@ class Account(models.Model):
     city = models.CharField(max_length=128)
     country = models.CharField(max_length=128)
     address = models.CharField(max_length=255)
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to='images/')
+
 
 
     ROLES_CHOICES = (
