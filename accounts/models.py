@@ -37,4 +37,5 @@ class Account(models.Model):
     def __str__(self):
         if self.user.first_name:
             return self.user.first_name
-        return self.user.user_name
+        return self.user.username
+
