@@ -1,3 +1,40 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Account(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    city = models.CharField(max_length=128)
+    country = models.CharField(max_length=128)
+    address = models.CharField(max_length=255)
+    avatar = models.ImageField()
+
+
+    ROLES_CHOICES = (
+        ("ADM", "Admin"),
+        ("USR", "User")
+    )
+    role = models.CharField(
+        max_length=3,
+        choices=ROLES_CHOICES,
+        default="USR",
+    )
+
+    COMM_CHOICES = (
+        ("PST", "Post Mail"),
+        ("EML", "E-Mail"),
+    )
+
+    preferred_communication_channel = models.CharField(
+        max_length=3,
+        choices=COMM_CHOICES,
+        default="EML",
+    )
+
+
+
+
+    def __str__(self):
+        if self.user.first_name:
+            return self.user.first_name
+        return self.user.user_name
