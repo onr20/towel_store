@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<h1>Our Towels</h1>
+  <div class="row">
+    <img src="{% static 'img/intro-1.jpg' %}" alt="Feel the Softness !" class="pic col-6">
+    <img src="{% static 'img/intro-2.jpg' %}" alt="Feel the Softness !" class="pic col-6">
+    <img src="{% static 'img/intro-3.jpg' %}" alt="Feel the Softness !" class="pic col-6">
+    <img src="{% static 'img/intro-4.jpg' %}" alt="Feel the Softness !" class="pic col-6">
+  </div> 
+
+<a href="{% url 'products:products_list' %}">
+  <button type="button" class="btn btn-warning middle">See Our Products</button>
+</a>
+
+    
+{% endblock %}
