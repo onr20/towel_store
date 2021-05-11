@@ -4,13 +4,16 @@
 
 <h1>Our Products:</h1>
     <div class="row">
-    {% for product in products %}
+    {% for product in product_list %}
 
     
         <div class="col-4">
             <h3>{{ product.title }} ({{ product.category }})</h3>
             <h4>{{ product.price }} €</h4>
-            <img src="{{ product.thumbnail.url }}" alt="product" class="pic">
+            <a href="{% url 'products:product_view' product.pk %}">
+                <img src="{{ product.thumbnail.url }}" alt="product" class="pic">
+            </a>
+            
         </div>
 
     
