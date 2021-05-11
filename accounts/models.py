@@ -10,7 +10,6 @@ class Account(models.Model):
     avatar = models.ImageField(upload_to='images/')
 
 
-
     ROLES_CHOICES = (
         ("ADM", "Admin"),
         ("USR", "User")
@@ -40,3 +39,11 @@ class Account(models.Model):
             return self.user.first_name
         return self.user.username
 
+
+class Author(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=128)
+    surname = models.CharField(max_length=128)
+
+    def __str__(self):
+        return f"{self.name} {self.surname}"
