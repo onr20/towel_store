@@ -11,11 +11,13 @@
             <th>Price</th>
         </tr>        
     </thead>
+    {% for order_line in basket %}
     <tr>
-        <td>Towel</td>
-        <td>10</td>
-        <td>50</td>
+        <td>{{ order_line.product.title }}</td>
+        <td>{{ order_line.number_of_products }}</td>
+        <td>{{ order_line.price }}</td>
     </tr>
+    {% endfor %}
 </table>
 
 
