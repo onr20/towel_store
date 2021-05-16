@@ -1,13 +1,14 @@
 from django.db import models
 from products.models import Product
 from accounts.models import Account
+import datetime
 
 
 class Order(models.Model):
     client = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="orders")
-    date_of_submission = models.DateField()
+    date_of_submission = models.DateField(default=datetime.date.today)
     active = models.BooleanField()  # If active=True, it means an active basket but order wasn't made yet
-    sum = models.DecimalField(max_digits=7, decimal_places=2)  # price of the whole order
+    sum = models.DecimalField(max_digits=7, decimal_places=2, default=0)  # price of the whole order
 
     STATUS_CHOICES = (
         ("NP", "Not Paid"),
