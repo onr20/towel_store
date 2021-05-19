@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load multiply %}
 {% block content %}
-
-<h1>Your Basket</h1>
-
+<h1>Thank you for your order:</h1>
+<h3>Your order has been paid and ready to ship</h3>
+<h2>Order Summary:</h2>
 <table class="table table-condensed">
     <thead>
         <tr>
@@ -11,10 +11,9 @@
             <th>Quantity</th>
             <th>Unit Price</th>
             <th>Lot Price</th>
-            <th>Action</th>
         </tr>        
     </thead>
-    {% for order_line in basket %}
+    {% for order_line in paid_basket %}
     <tr>
         <td>
             <img src="{{ order_line.product.thumbnail.url }}" alt="product image" style="max-height: 100px;">
@@ -23,31 +22,12 @@
         <td>{{ order_line.number_of_products }}</td>
         <td>{{ order_line.price }}€</td>
         <td>{% multiply order_line.number_of_products  order_line.price %}€</td>
-        <td>
-            <a href="{% url 'orders:basket_remove' order_line.id %}">
-                <button class="btn btn-info">
-                    Remove
-                </button>
-            </a>
-            
-        </td>
     </tr>
     {% endfor %}
     <tr style="background-color: bisque;">
         <td colspan=3>Total</td>
-        <td colspan=2>{{ total_price }}€</td>
+        <td colspan=1>{{ total_price }}€</td>
     </tr>
 </table>
-
-<a href="{% url 'orders:empty_basket' active_order.id %}">
-    <button class="btn btn-danger">
-        Empty basket
-    </button>
-</a>
-<a href="{% url 'orders:checkout' active_order.id %}">
-    <button class="btn btn-success">
-        Pay for Order
-    </button>
-</a>
 
 {% endblock %}

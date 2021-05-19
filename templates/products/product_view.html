@@ -14,7 +14,7 @@
 
 <h4>Price: {{ product.price }}€</h4>
 
-<form action="{% url 'orders:basket_add' product.id  %}">
+<form action="{% url 'orders:basket_add' product.id  %}" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Add to Cart" class="btn btn-warning">
