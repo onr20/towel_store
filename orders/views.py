@@ -8,7 +8,7 @@ from accounts.models import Account
 from .forms import CartAddProductForm
 import datetime
 
-
+@login_required
 def view_basket(request):
     user = request.user
     basket = []
