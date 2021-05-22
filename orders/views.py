@@ -95,4 +95,23 @@ def checkout(request, order_id):
     for item in paid_basket:
         total_price += item.price * item.number_of_products
 
+    paid_order.sum = total_price
+    paid_order.save()
+
     return render(request, "orders/checkout_page.html", context={"paid_basket": paid_basket, "total_price": total_price})
+
+
+@login_required
+def all_orders(request):
+    user = request.user
+    account = Account.objects.get(user=user)
+    all_orders = Order.objects.filter(client=account, active=False)
+
+    # items_lists = [[items of the first order], [items of the second order], ....]
+    items_lists = []
+    for order in all_orders:
+        items_lists.append(OrderLine.objects.filter(order=order))
+
+    orders_info = zip(all_orders, items_lists)
+
+    return render(request, "orders/all_orders.html", context={"client_orders":orders_info})

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load multiply %}
+{% block content %}
+<h1>Orders history:</h1>
+{% for order, items in client_orders %}
+<h2>Order {{ order.id }} Summary:</h2>
+<h3>Status: {{ order.status }}</h3>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Lot Price</th>
+        </tr>        
+    </thead>
+    {% for order_line in items %}
+    <tr>
+        <td>
+            <img src="{{ order_line.product.thumbnail.url }}" alt="product image" style="max-height: 100px;">
+            {{ order_line.product.title }}
+        </td>
+        <td>{{ order_line.number_of_products }}</td>
+        <td>{{ order_line.price }}€</td>
+        <td>{% multiply order_line.number_of_products  order_line.price %}€</td>
+    </tr>
+    {% endfor %}
+    <tr style="background-color: bisque;">
+        <td colspan=3>Total</td>
+        <td colspan=1>{{ order.sum }}€</td>
+    </tr>
+</table>
+{% endfor %}
+
+{% endblock %}

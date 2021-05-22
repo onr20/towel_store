@@ -7,6 +7,10 @@
     padding: 5px;
 }
 
+.table td {
+    vertical-align: middle;
+}
+
 #logo-img {
     max-height: 70px;
     margin-bottom: 0px;
