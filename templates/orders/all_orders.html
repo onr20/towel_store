@@ -4,7 +4,7 @@
 <h1>Orders history:</h1>
 {% for order, items in client_orders %}
 <h2>Order {{ order.id }} Summary:</h2>
-<h3>Status: {{ order.status }}</h3>
+<h3>Status: {{ order.get_status_display }}</h3>
 <table class="table table-condensed">
     <thead>
         <tr>
